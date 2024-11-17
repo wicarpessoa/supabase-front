@@ -8,8 +8,10 @@ const updateProductDescription = document.querySelector('#update-description');
 const modal = document.querySelector('#update-modal');
 const closeModalButton = modal.querySelector('.close');
 
+const baseURL = "http://18.118.216.84:3000"
+
 async function fetchProducts() {
-  const response = await fetch('http://localhost:3000/products');
+  const response = await fetch(baseURL + '/products');
   const products = await response.json();
   console.log(products)
   // Clear product list
@@ -53,7 +55,7 @@ addProductForm.addEventListener('submit', async event => {
 
 
 async function addProduct(name, price, description) {
-  const response = await fetch('http://localhost:3000/products', {
+  const response = await fetch(baseURL + '/products', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -64,7 +66,7 @@ async function addProduct(name, price, description) {
 }
 
 async function updateProduct(id, name, price, description) {
-  const response = await fetch(`http://localhost:3000/products/${id}`, {
+  const response = await fetch(baseURL + `/products/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -81,7 +83,7 @@ async function updateProduct(id, name, price, description) {
 }
 
 async function deleteProduct(id) {
-  const response = await fetch('http://localhost:3000/products/' + id, {
+  const response = await fetch(baseURL + '/products/' + id, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
